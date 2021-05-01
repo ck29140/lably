@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.websocket.server.PathParam;
+
 import com.xfactor.lably.entity.Lab;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import antlr.collections.List;
 
 @RestController
 @RequestMapping("/test")
@@ -21,11 +27,11 @@ public class TestController {
     ArrayList<Lab> labs = new ArrayList<>();
 
     // @RequestMapping(method = RequestMethod.GET)
-    @GetMapping
+    @GetMapping("/hello")
     public String hello() {
         return "Greetings from XFACTOR!!!";
     }
-
+    //path parameter, 
     @GetMapping("/hello/{name}")
     public String helloName(@PathVariable String name) {
         return "Greetings from " + name + "!!!";
@@ -58,6 +64,7 @@ public class TestController {
     }
 
     @PostMapping("/addLab")
+    // public @ResponseBody Lab addLab(@RequestBody Lab lab) 
     public Lab addLab(@RequestBody Lab lab) {
         String name = lab.getName();
         name = "Hello " + name;
